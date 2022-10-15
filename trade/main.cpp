@@ -6,9 +6,21 @@
 //
 
 #include <iostream>
-
+#include "OrderBookEntry.hpp"
+#include <vector>
+#include <string>
+#include <fstream>
+#include <filesystem>
+#include "MerkelMain.hpp"
+#include "Reader.hpp"
+#include "Wallet.hpp"
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    
+//    MerkelMain app{};
+//    app.init();
+    Wallet wallat;
+    
+    wallat.insertCurrency("BTC", 2);
+    std::cout << "Wallaet Has BTC " << wallat.hasCurrency("BTC", 4);
     return 0;
 }
