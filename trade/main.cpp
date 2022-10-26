@@ -16,11 +16,7 @@
 #include "Wallet.hpp"
 int main(int argc, const char * argv[]) {
     
-//    MerkelMain app{};
-//    app.init();
-    Wallet wallat;
-    
-    wallat.insertCurrency("BTC", 2);
-    std::cout << "Wallaet Has BTC " << wallat.hasCurrency("BTC", 4);
+    MerkelMain app{};
+    app.init();
     return 0;
 }

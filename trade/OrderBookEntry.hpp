@@ -19,7 +19,8 @@ public:
                    double amount,
                    std::string timestamp,
                    std::string product,
-                   OrderBookType orderType
+                   OrderBookType orderType,
+                   std::string username = "system"
                    );
     
     static OrderBookType convertType(std::string type);
@@ -31,6 +32,7 @@ public:
     std::string timestamp;
     std::string product;
     OrderBookType orderType;
+    std::string username;
     
 };
 #endif /* OrderBookEntry_hpp */

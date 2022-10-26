@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45C1307428F8CD0A0093C7E8 /* Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1307228F8CD0A0093C7E8 /* Reader.cpp */; };
+		45C1307728F97A900093C7E8 /* OrderBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1307528F97A900093C7E8 /* OrderBook.cpp */; };
 		45DBAD8A28F4C68A0088ADB7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD8928F4C68A0088ADB7 /* main.cpp */; };
+		45DBAD9328F74B890088ADB7 /* OrderBookEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD9128F74B890088ADB7 /* OrderBookEntry.cpp */; };
+		45DBAD9928F751050088ADB7 /* MerkelMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD9728F751050088ADB7 /* MerkelMain.cpp */; };
+		45F95D8628FA3AFC0083C448 /* Wallet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F95D8428FA3AFC0083C448 /* Wallet.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +28,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		45C1306C28F8817B0093C7E8 /* 20200317.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = 20200317.csv; path = "../../../../../../../Documents/csv-oop/20200317.csv"; sourceTree = "<group>"; };
+		45C1306E28F883B00093C7E8 /* test.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.csv; sourceTree = "<group>"; };
+		45C1307228F8CD0A0093C7E8 /* Reader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Reader.cpp; sourceTree = "<group>"; };
+		45C1307328F8CD0A0093C7E8 /* Reader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Reader.hpp; sourceTree = "<group>"; };
+		45C1307528F97A900093C7E8 /* OrderBook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrderBook.cpp; sourceTree = "<group>"; };
+		45C1307628F97A900093C7E8 /* OrderBook.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OrderBook.hpp; sourceTree = "<group>"; };
 		45DBAD8628F4C68A0088ADB7 /* trade */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = trade; sourceTree = BUILT_PRODUCTS_DIR; };
 		45DBAD8928F4C68A0088ADB7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		45DBAD9128F74B890088ADB7 /* OrderBookEntry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrderBookEntry.cpp; sourceTree = "<group>"; };
+		45DBAD9228F74B890088ADB7 /* OrderBookEntry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OrderBookEntry.hpp; sourceTree = "<group>"; };
+		45DBAD9728F751050088ADB7 /* MerkelMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MerkelMain.cpp; sourceTree = "<group>"; };
+		45DBAD9828F751050088ADB7 /* MerkelMain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MerkelMain.hpp; sourceTree = "<group>"; };
+		45F95D8428FA3AFC0083C448 /* Wallet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Wallet.cpp; sourceTree = "<group>"; };
+		45F95D8528FA3AFC0083C448 /* Wallet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Wallet.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +74,19 @@
 		45DBAD8828F4C68A0088ADB7 /* trade */ = {
 			isa = PBXGroup;
 			children = (
+				45C1307528F97A900093C7E8 /* OrderBook.cpp */,
+				45F95D8428FA3AFC0083C448 /* Wallet.cpp */,
+				45F95D8528FA3AFC0083C448 /* Wallet.hpp */,
+				45C1307628F97A900093C7E8 /* OrderBook.hpp */,
+				45DBAD9728F751050088ADB7 /* MerkelMain.cpp */,
+				45DBAD9828F751050088ADB7 /* MerkelMain.hpp */,
 				45DBAD8928F4C68A0088ADB7 /* main.cpp */,
+				45DBAD9128F74B890088ADB7 /* OrderBookEntry.cpp */,
+				45DBAD9228F74B890088ADB7 /* OrderBookEntry.hpp */,
+				45C1306C28F8817B0093C7E8 /* 20200317.csv */,
+				45C1306E28F883B00093C7E8 /* test.csv */,
+				45C1307228F8CD0A0093C7E8 /* Reader.cpp */,
+				45C1307328F8CD0A0093C7E8 /* Reader.hpp */,
 			);
 			path = trade;
 			sourceTree = "<group>";
@@ -119,7 +148,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45DBAD9928F751050088ADB7 /* MerkelMain.cpp in Sources */,
+				45DBAD9328F74B890088ADB7 /* OrderBookEntry.cpp in Sources */,
+				45F95D8628FA3AFC0083C448 /* Wallet.cpp in Sources */,
+				45C1307428F8CD0A0093C7E8 /* Reader.cpp in Sources */,
 				45DBAD8A28F4C68A0088ADB7 /* main.cpp in Sources */,
+				45C1307728F97A900093C7E8 /* OrderBook.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

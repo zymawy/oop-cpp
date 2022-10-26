@@ -29,10 +29,8 @@ private:
     void goToNextTimeFrame();
     int getUserOption();
     void processUserOption(int option);
-    
     std::string currentTime;
-
-    OrderBook orderBook{"/Users/ironside/Code/uol/own/OOP/week1/trade/trade/test.csv"};
+    OrderBook orderBook{"test.csv"};
     
     Wallet wallet;
     
