@@ -28,7 +28,7 @@ std::vector<OrderBookEntry> Reader::read(std::string file) {
                 OrderBookEntry order = stringTpOrderBookEntry(tokenise(line, ','));
                 enteries.push_back(order);
             } catch (const std::exception& e) {
-                std::cout << "Reader[read]  bad data" << std::endl;
+                std::cout << "Reader[read]  bad data '" <<  line << "'"  << std::endl;
             }
         }
     }
