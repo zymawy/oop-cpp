@@ -4,7 +4,7 @@
 //
 //  Created by hamza ironside on 10/14/22.
 //
-
+#pragma once
 #ifndef Reader_hpp
 #define Reader_hpp
 

@@ -4,7 +4,7 @@
 //
 //  Created by hamza ironside on 10/15/22.
 //
-
+#pragma once
 #ifndef Wallet_hpp
 #define Wallet_hpp
 #include <string>

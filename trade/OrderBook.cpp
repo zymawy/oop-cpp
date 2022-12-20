@@ -8,6 +8,13 @@
 #include "OrderBook.hpp"
 #include "Reader.hpp"
 #include <map>
+#include "OrderBookEntry.hpp"
+#include "UserInputProcessor.hpp"
+
+OrderBook::OrderBook() {
+    
+}
+
 OrderBook::OrderBook(std::string filename) {
     orders = Reader::read(filename);
 }
@@ -26,6 +33,24 @@ std::vector<std::string> OrderBook::getKnownProducts() {
     return prodcuts;
     
 }
+
+
+
+std::string OrderBook::getAllKnownProducts() {
+  
+    std::string lists;
+    std::vector<std::string> knownProducts = getKnownProducts();
+    
+    for (auto const& product : knownProducts) {
+        // let's check, and avoid adding comma in first or last command name...
+        std::string withComma = ", ";
+        lists = lists.append(withComma + product);
+     }
+    
+    return lists;
+};
+
+
 std::vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type, std::string product, std::string timestamp) {
     std::vector<OrderBookEntry> foundOrders;
     
@@ -166,4 +191,34 @@ std::vector<OrderBookEntry> OrderBook::matchAsksToBids(std::string product, std:
     } // first for
     
     return sales;
+}
+
+
+bool OrderBook::isProductExists(std::string product) {
+    
+    std::vector<std::string> knownProducts = getKnownProducts();
+    bool productExists = false;
+    
+    for(auto const& kProduct : knownProducts) {
+        if (kProduct == product) {
+            productExists = true;
+        };
+    }
+    
+    return productExists;
+    
+}
+
+double OrderBook::getLowPriceFor(std::string product, std::string type, std::string timestamp) {
+    
+    std::vector<OrderBookEntry> foundOrders = getOrders(OrderBookEntry::convertType(type), product, timestamp);
+
+    return OrderBook::getLowPrice(foundOrders);
+}
+
+double OrderBook::getHighPriceFor(std::string product, std::string type, std::string timestamp) {
+    
+    std::vector<OrderBookEntry> foundOrders = getOrders(OrderBookEntry::convertType(type), product, timestamp);
+
+    return OrderBook::getHighPrice(foundOrders);
 }

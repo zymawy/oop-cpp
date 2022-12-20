@@ -14,9 +14,12 @@
 #include "OrderBookEntry.hpp"
 #include "OrderBook.hpp"
 #include "Wallet.hpp"
-class MerkelMain {
+#include "Commands/CommandCreator.hpp"
+#include "Processors/UserInputProcessor.hpp"
+
+class Advisorbot {
 public:
-    MerkelMain();
+    Advisorbot();
     void init();
     
 private:
@@ -28,9 +31,14 @@ private:
     void printWallet();
     void goToNextTimeFrame();
     int getUserOption();
-    void processUserOption(int option);
+    void processUserOption(std::string option);
     std::string currentTime;
     OrderBook orderBook{"test.csv"};
+//    OrderBook orderBook{"data/mid_trem_20200601.csv"};
+    // let's create or command create to
+    // init the commands ...
+    CommandCreator commandCreator{};
+    UserInputProcessor inputProcesser{};
     
     Wallet wallet;
     

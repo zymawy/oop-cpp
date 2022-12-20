@@ -5,60 +5,47 @@
 //  Created by hamza ironside on 10/12/22.
 //
 
-#include "MerkelMain.hpp"
+#include "Advisorbot.hpp"
 #include <iostream>
 #include "OrderBookEntry.hpp"
 #include "Reader.hpp"
 #include <fstream>
 #include <string>
+#include "UserInputProcessor.hpp"
 
-
-
-MerkelMain::MerkelMain() {
-
+Advisorbot::Advisorbot() {
+//    commandCreator.setOrderBook(orderBook);
 }
 
-void MerkelMain::init() {
-    int input;
+void Advisorbot::init() {
+    
+    UserInputProcessor::print("Please enter a command, or help for a list of commands");
     currentTime = orderBook.getEarliestTime();
-    
-    wallet.insertCurrency("BTC", 10);
-    
     while (true) {
-        printMenu();
-        input = getUserOption();
-        processUserOption(input);
+        try {
+            
+            std::string input;
+            
+            input = inputProcesser.getInput();
+            commandCreator.isVaildCommand(input);
+            commandCreator.setOrderBook(orderBook);
+            // todo:: if have time enhonce
+            if (input == "step") {
+                goToNextTimeFrame();
+            }
+  
+            commandCreator.setCurrentTime(currentTime);
+            commandCreator.runCommand(input);
+        } catch (const std::exception& e) {
+   
+            UserInputProcessor::print(e.what());
+
+        }
     }
 }
 
 
-void MerkelMain::printMenu() {
-    
-        std::cout << "1: Print Help" << std::endl;
-        
-        std::cout << "2: Print Extancge States" << std::endl;
-        
-        std::cout << "3: Make An Offer " << std::endl;
-        
-        std::cout << "4: Make A Bid" << std::endl;
-        
-        std::cout << "5: Print Wallet " << std::endl;
-        
-        std::cout << "Continue .." << std::endl;
-        
-        std::cout <<  "==============" << std::endl;
-    
-    std::cout <<  "Current Time Is : " << currentTime << std::endl;
-        
-        std::cout << "Type in 1 till 6" << std::endl;
-}
-
-
-void MerkelMain::printHelp() {
-    std::cout << "Help - your aim is to make money. Analyze the market and make " << std::endl;
-}
-
-void MerkelMain::printMarketStats() {
+void Advisorbot::printMarketStats() {
     
     for(std::string const& product : orderBook.getKnownProducts()) {
         std::cout << "Product: " << product << std::endl;
@@ -73,7 +60,7 @@ void MerkelMain::printMarketStats() {
 //    std::cout << "Market Looks Good" << std::endl;
 }
 
-void MerkelMain::enterAsk() {
+void Advisorbot::enterAsk() {
     
     std::cout << "Make and offer - enter the amount: product, price, amount, eg ETH/BTC," << std::endl;
     std::string input;
@@ -109,7 +96,7 @@ void MerkelMain::enterAsk() {
     std::cout << "Your Enter : " << input << std::endl;
 }
 
-void MerkelMain::enterBid() {
+void Advisorbot::enterBid() {
     
     std::cout << "Make and offer - enter the amount: product, price, amount, eg ETH/BTC," << std::endl;
     std::string input;
@@ -145,7 +132,7 @@ void MerkelMain::enterBid() {
     std::cout << "Your Enter : " << input << std::endl;
 }
 
-void MerkelMain::printWallet() {
+void Advisorbot::printWallet() {
     
 //    std::cout << "Your Wallet is Has : " << orders.size() << " Of Enteries!" << std::endl;
 //    unsigned int bids = 0;
@@ -164,62 +151,7 @@ void MerkelMain::printWallet() {
 }
 
 
-void MerkelMain::goToNextTimeFrame() {
+void Advisorbot::goToNextTimeFrame() {
     
     currentTime = orderBook.getNextTime(currentTime);
-    
-    std::cout << "Going To Next Time Frame : Current: " << currentTime << std::endl;
-}
-
-int MerkelMain::getUserOption() {
-    int option;
-    std::string line;
-    std::cout << "Type Number Withn 1 - 6" << std::endl;
-    std::string input;
-   std::getline(std::cin, line);
-    
-    try {
-        option = std::stoi(line);
-    } catch (const std::exception& e) {
-        
-    }
-    
-    std::cout << "You Chose: " << option << std::endl;
-    
-    return option;
-}
-
-void MerkelMain::processUserOption(int option) {
-    
-    if (option == 0) {
-        std::cout << "Invalid Choice, Choose With range of 1 - 6" << std::endl;
-    }
-    
-    if (option == 1) {
-        printHelp();
-    }
-    
-    
-    if (option == 2) {
-        printMarketStats();
-    }
-    
-    
-    if (option == 3) {
-        enterAsk();
-    }
-    
-    
-    if (option == 4) {
-        enterBid();
-    }
-    
-    
-    if (option == 5) {
-        printWallet();
-    }
-    
-    if (option == 6) {
-        goToNextTimeFrame();
-    }
 }
