@@ -33,8 +33,8 @@ private:
     int getUserOption();
     void processUserOption(std::string option);
     std::string currentTime;
-    OrderBook orderBook{"test.csv"};
-//    OrderBook orderBook{"data/mid_trem_20200601.csv"};
+//    OrderBook orderBook{"test.csv"};
+    OrderBook orderBook{"data/mid_trem_20200601.csv"};
     // let's create or command create to
     // init the commands ...
     CommandCreator commandCreator{};

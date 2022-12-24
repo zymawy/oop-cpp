@@ -15,6 +15,7 @@
 #include "PredictCommand.hpp"
 #include "TimeCommand.hpp"
 #include "StepCommand.hpp"
+#include "HighestAndLowestCommand.hpp"
 #include "UserInputProcessor.hpp"
 #include <iostream>
 #include <string>
@@ -31,6 +32,7 @@ CommandCreator::CommandCreator() {
     commands.emplace_back(std::make_unique<PredictCommand>());
     commands.emplace_back(std::make_unique<TimeCommand>());
     commands.emplace_back(std::make_unique<StepCommand>());
+    commands.emplace_back(std::make_unique<HighestAndLowestCommand>()); // own command
 }
 
 
@@ -71,7 +73,12 @@ std::string CommandCreator::checkCommandVaildate(std::string command) {
                ||
                command.rfind("help", 0) == 0
                ||
-               command.rfind("max", 0) == 0) )
+               command.rfind("max", 0) == 0
+               ||
+               command.rfind("predict", 0) == 0
+                ||
+               command.rfind("high", 0) == 0)
+        )
             {
                   
                   auto argments = UserInputProcessor::explode(command, ' ');
