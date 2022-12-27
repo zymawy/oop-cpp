@@ -10,10 +10,7 @@
 #include "vector"
 
 void ProductCommand::run() {
-    for (auto & productName: orderBook.products) {
-        UserInputProcessor::info(productName);
+    for (auto &productName: orderBook.products) {
+        UserInputProcessor::info(productName, icon);
     }
-}
-
-void ProductCommand::init() {
 }

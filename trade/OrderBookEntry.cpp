@@ -9,46 +9,42 @@
 
 
 OrderBookEntry::OrderBookEntry(
-               double price,
-               double amount,
-               std::string timestamp,
-               std::string product,
-               OrderBookType orderType,
-                std::string username)
-{
+        double price,
+        double amount,
+        std::string timestamp,
+        std::string product,
+        OrderBookType orderType
+        ) {
     this->price = price;
     this->amount = amount;
     this->timestamp = timestamp;
     this->product = product;
     this->orderType = orderType;
-    this->username = username;
 }
 
 
 OrderBookType OrderBookEntry::convertType(std::string type) {
-    
+
     if (type == "ask") {
         return OrderBookType::ask;
     } else if (type == "bid") {
         return OrderBookType::bid;
     }
-    
-    return OrderBookType::unkown;
+
+    return OrderBookType::unknown;
 }
 
 
+bool OrderBookEntry::compareByTimestamp(OrderBookEntry &orderOne, OrderBookEntry &orderTow) {
 
-bool OrderBookEntry::compareByTimestamp(OrderBookEntry& orderOne, OrderBookEntry& orderTow) {
-    
     return orderOne.timestamp < orderTow.timestamp;
 }
 
 
-bool OrderBookEntry::compareByPriceAsc(OrderBookEntry& orderOne, OrderBookEntry& orderTow)
-{
-return orderOne.price < orderTow.price;
+bool OrderBookEntry::compareByPriceAsc(OrderBookEntry &orderOne, OrderBookEntry &orderTow) {
+    return orderOne.price < orderTow.price;
 }
-bool OrderBookEntry::compareByPriceDesc(OrderBookEntry& orderOne, OrderBookEntry& orderTow)
-{
-return orderOne.price > orderTow.price;
+
+bool OrderBookEntry::compareByPriceDesc(OrderBookEntry &orderOne, OrderBookEntry &orderTow) {
+    return orderOne.price > orderTow.price;
 }

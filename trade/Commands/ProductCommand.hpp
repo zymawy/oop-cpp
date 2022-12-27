@@ -13,12 +13,13 @@
 
 #include "BaseCommand.hpp"
 
-class ProductCommand: public BaseCommand {
+class ProductCommand : public BaseCommand {
 public:
+//    It's calling the constructor of the base class.
     ProductCommand() : BaseCommand(2, "prod", "list available products", "👨🏾‍💻") {}
-    
+
 private:
-    virtual void init();
+//    It's a virtual function.
     virtual void run();
 };
 

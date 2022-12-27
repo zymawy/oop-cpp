@@ -10,7 +10,7 @@
 
 #include <stdio.h>
 #include <string>
-enum class OrderBookType{bid, ask, unkown, sale};
+enum class OrderBookType{bid, ask, unknown, sale};
 
 class OrderBookEntry {
 public:
@@ -19,8 +19,7 @@ public:
                    double amount,
                    std::string timestamp,
                    std::string product,
-                   OrderBookType orderType,
-                   std::string username = "system"
+                   OrderBookType orderType
                    );
     
     static OrderBookType convertType(std::string type);
@@ -32,7 +31,6 @@ public:
     std::string timestamp;
     std::string product;
     OrderBookType orderType;
-    std::string username;
     
 };
 #endif /* OrderBookEntry_hpp */

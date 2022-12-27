@@ -9,34 +9,31 @@
 #include "UserInputProcessor.hpp"
 
 void MinimumCommand::run() {
-    
-    auto argments = UserInputProcessor::explode(commandName, ' ');
-    
-    
-    if (argments.size() < 3) {
+
+    auto arguments = UserInputProcessor::explode(commandName, ' ');
+
+
+    if (arguments.size() < 3) {
         throw std::runtime_error(std::string("arguments missing product ex..[BTC/ETH], type ex..[ask,bid]"));
     }
-    
-    std::string product =argments[1];
-    std::string type =argments[2];
-    
+
+    std::string product = arguments[1];
+    std::string type = arguments[2];
+
     if ((type != "bid" && type != "ask")) {
 
-            throw std::runtime_error(std::string("argument missing/invalid type, it should be ether ask or bid you entered [" + type + "]"));
+        throw std::runtime_error(
+                std::string("argument missing/invalid type, it should be ether ask or bid you entered [" + type + "]"));
     }
-    
-    if (! orderBook.isProductExists(product)) {
-        
-        throw std::runtime_error(std::string("not supported product, please type `prod` for knowen product"));
-    }
-    
-    std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookEntry::convertType(type), product,currentTime);
-    
-    double minPrice = orderBook.getLowPrice(entries,product,OrderBookEntry::convertType(type));
-    
-    UserInputProcessor::info("The min ask for "+ product + " is " + std::to_string(minPrice), icon);
-}
 
-void MinimumCommand::init() {
-    
+    if (!orderBook.isProductExists(product)) {
+
+        throw std::runtime_error(std::string("not supported product, please type `prod` for known product"));
+    }
+
+    std::vector <OrderBookEntry> entries = orderBook.getOrders(OrderBookEntry::convertType(type), product, currentTime);
+
+    double minPrice = orderBook.getLowPrice(entries, product, OrderBookEntry::convertType(type));
+
+    UserInputProcessor::info("The min ask for " + product + " is " + std::to_string(minPrice), icon);
 }

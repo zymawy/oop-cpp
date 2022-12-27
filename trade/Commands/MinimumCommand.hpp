@@ -12,12 +12,13 @@
 #include <stdio.h>
 #include "BaseCommand.hpp"
 
-class MinimumCommand: public BaseCommand {
+class MinimumCommand : public BaseCommand {
 public:
-    MinimumCommand(): BaseCommand(3, "min", "find minimum bid or ask for product in current time step", "📉") {}
-    
+//    This is the constructor for the MinimumCommand class. It is calling the constructor for the BaseCommand class.
+    MinimumCommand() : BaseCommand(3, "min", "find minimum bid or ask for product in current time step", "📉") {}
+
 private:
-    virtual void init();
+//    A virtual function that is being overridden.
     virtual void run();
 };
 

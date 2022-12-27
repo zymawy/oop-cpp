@@ -8,21 +8,11 @@
 #include "UserInputProcessor.hpp"
 
 #include <iostream>
-#include <fstream>
-#include <string>
 #include <sstream>
-#include <utility>
 #include <vector>
-#include <ios>
-#include <iostream>
-#include <iomanip>
-#include <sstream>
 
 
-
-UserInputProcessor::UserInputProcessor() {
-    
-}
+UserInputProcessor::UserInputProcessor() {}
 
 std::string UserInputProcessor::getInput() {
     std::string line;
@@ -32,7 +22,6 @@ std::string UserInputProcessor::getInput() {
 }
 
 void UserInputProcessor::print(std::string taxt, std::string by) {
-    //"\n" <<
     std::cout << by << taxt << std::endl;
 }
 
@@ -40,10 +29,10 @@ void UserInputProcessor::print(std::string taxt, std::string by) {
 void UserInputProcessor::debug(std::string taxt) {
     print(taxt, "debug🐛> ");
 }
+
 void UserInputProcessor::info(std::string taxt, std::string icon) {
-//    std::cout.setf(std::ios::right, std::ios::adjustfield);
 //    std::cout.width(50);
-    
+
     print(taxt, "advisorbot" + icon + "> ");
 }
 
@@ -52,17 +41,15 @@ void UserInputProcessor::exception(std::string taxt) {
     print(taxt, "exception🚨> ");
 }
 
-std::vector<std::string> UserInputProcessor::explode(std::string const &s, char delim)
-{
-    std::vector<std::string> result;
+std::vector <std::string> UserInputProcessor::explode(std::string const &s, char delim) {
+    std::vector <std::string> result;
     std::istringstream iss(s);
 
-    for (std::string token; std::getline(iss, token, delim); )
-    {
+    for (std::string token; std::getline(iss, token, delim);) {
         // let's clear any spaces
         std::string::iterator end_pos = std::remove(token.begin(), token.end(), ' ');
         token.erase(end_pos, token.end());
-        
+
         result.push_back(std::move(token));
     }
 
@@ -71,15 +58,15 @@ std::vector<std::string> UserInputProcessor::explode(std::string const &s, char 
 
 
 std::string UserInputProcessor::repeat(int n, std::string repeat) {
-    
+
     std::ostringstream os;
-    for(int i = 0; i < n; i++)
+    for (int i = 0; i < n; i++)
         os << repeat;
-    
-    
+
+
     return os.str();
 }
 
 bool UserInputProcessor::is_number(const std::string &s) {
-  return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
+    return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
 }

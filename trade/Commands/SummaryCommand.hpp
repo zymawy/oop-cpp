@@ -13,12 +13,13 @@
 #include "BaseCommand.hpp"
 
 
-class SummaryCommand: public BaseCommand {
+class SummaryCommand : public BaseCommand {
 public:
-    SummaryCommand(): BaseCommand(9, "summary", "a summary of the higitest/loweset products.. ", "📝") {}
-    
+    //    This is the constructor for the SummaryCommand class. It is calling the constructor for the BaseCommand class.
+    SummaryCommand() : BaseCommand(9, "summary", "a summary of the highest/lowest products.. ", "📝") {}
+
 private:
-    virtual void init();
+//    A virtual function that is being overridden.
     virtual void run();
 };
 

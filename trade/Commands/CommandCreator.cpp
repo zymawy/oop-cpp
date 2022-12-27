@@ -23,11 +23,11 @@
 #include <typeinfo>
 
 CommandCreator::CommandCreator() {
-    
-   /**
-    Let's push our commands. in order to use each individual command in its own command class, and let's
-    It is our Advotisebot that determines and routes the user to the appropriate command class that serves the user's request.
-    */
+
+    /**
+     Let's push our commands. in order to use each individual command in its own command class, and let's
+     It is our Advisorbot that determines and routes the user to the appropriate command class that serves the user's request.
+     */
     commands.emplace_back(std::make_unique<HelpCommand>());
     commands.emplace_back(std::make_unique<ProductCommand>());
     commands.emplace_back(std::make_unique<MinimumCommand>());
@@ -42,29 +42,29 @@ CommandCreator::CommandCreator() {
 
 
 void CommandCreator::runCommand(std::string commandName) {
- 
+
     std::string oddCommand = commandName;
-    
-    // let's handle any command has differnct signiture ...
-    if (checkCommandVaildate(oddCommand) != "") {
-        // validate our commnds and make sure we
+
+    // let's handle any command has different signature ...
+    if (checkCommandValidate(oddCommand) != "") {
+        // validate our commands and make sure we
         // support that command... 
-        oddCommand = checkCommandVaildate(oddCommand);
+        oddCommand = checkCommandValidate(oddCommand);
     }
 
     // let's find the desire command
     // and get going and run it!
-    for (auto  const& command : commands) {
+    for (auto const &command: commands) {
         if (command->getName() == oddCommand) {
             command->setOrderBook(orderBook);
             command->setCurrentTime(currentTime);
             command->setCommandName(commandName);
             command->run();
         }
-     }
+    }
 }
 
-void CommandCreator::setOrderBook(OrderBook& mOrderBook) {
+void CommandCreator::setOrderBook(OrderBook &mOrderBook) {
     orderBook = mOrderBook;
 }
 
@@ -74,62 +74,59 @@ void CommandCreator::setCurrentTime(std::string mCurrentTime) {
 }
 
 
-std::string CommandCreator::checkCommandVaildate(std::string command) {
-    
-     if((
-               command.rfind("min", 0) == 0
-               ||
-               command.rfind("avg", 0) == 0
-               ||
-               command.rfind("help", 0) == 0
-               ||
-               command.rfind("max", 0) == 0
-               ||
-               command.rfind("predict", 0) == 0
-                ||
-               command.rfind("high", 0) == 0)
-        )
-            {
-                  
-                  auto argments = UserInputProcessor::explode(command, ' ');
-                  
-                  return argments[0];
-                  
-              }  else return "";
+std::string CommandCreator::checkCommandValidate(std::string command) {
+
+    if ((
+            command.rfind("min", 0) == 0
+            ||
+            command.rfind("avg", 0) == 0
+            ||
+            command.rfind("help", 0) == 0
+            ||
+            command.rfind("max", 0) == 0
+            ||
+            command.rfind("predict", 0) == 0
+            ||
+            command.rfind("high", 0) == 0)
+            ) {
+
+        auto argments = UserInputProcessor::explode(command, ' ');
+
+        return argments[0];
+
+    } else return "";
 }
 
 
-bool CommandCreator::isVaildCommand(std::string command) {
-    
+bool CommandCreator::isValidCommand(std::string command) {
+
     for (int i = 0; i < commands.size(); ++i) {
         if (
-            commands[i]->getName() == command
-            || checkCommandVaildate(command) != ""
-            ) {
+                commands[i]->getName() == command
+                || checkCommandValidate(command) != ""
+                ) {
             return true;
         }
-   }
+    }
 
-    UserInputProcessor::debug(checkCommandVaildate(command));
-    
-    throw std::runtime_error(std::string("please provider a vaild command name type help for more inforamtion"));
+    UserInputProcessor::debug(checkCommandValidate(command));
+
+    throw std::runtime_error(std::string("please provider a valid command name type help for more information"));
 
     return false;
 };
 
 
 std::string CommandCreator::findCommand(std::string commadName, std::string type) {
-  
-    std::vector<std::string> prodcuts;
-    
-    std::map<std::string, std::string> mappedProducts;
-    for(auto const& command : commands) {
-        if(command->getName() == commadName) {
+
+    std::map <std::string, std::string> mappedProducts;
+    for (auto const &command: commands) {
+        if (command->getName() == commadName) {
             if (type == "description") {
                 return command->getDescription();
             }
         }
     }
-    
-    throw std::runtime_error(std::string("please provider currect input!"));
+
+    throw std::runtime_error(std::string("please provider current input!"));
 }

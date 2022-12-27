@@ -9,9 +9,6 @@
 #include "UserInputProcessor.hpp"
 
 void TimeCommand::run() {
-    
-    UserInputProcessor::info(currentTime, icon);
-}
 
-void TimeCommand::init() {
+    UserInputProcessor::info(currentTime, icon);
 }

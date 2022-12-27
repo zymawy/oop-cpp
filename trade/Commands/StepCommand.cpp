@@ -9,9 +9,6 @@
 #include "UserInputProcessor.hpp"
 
 void StepCommand::run() {
-    
-    UserInputProcessor::info("now at " + currentTime, icon);
-}
 
-void StepCommand::init() {
+    UserInputProcessor::info("now at " + currentTime, icon);
 }
