@@ -8,15 +8,17 @@
 
 #ifndef MaximumCommand_hpp
 #define MaximumCommand_hpp
+
 #include <stdio.h>
 #include "BaseCommand.hpp"
 
-class MaximumCommand: public BaseCommand {
+class MaximumCommand : public BaseCommand {
 public:
-    MaximumCommand(): BaseCommand(4, "max", " find maximum bid or ask for product in current time step", "📈") {}
-    
+//    This is the constructor for the MaximumCommand class. It is calling the constructor for the BaseCommand class.
+    MaximumCommand() : BaseCommand(4, "max", " find maximum bid or ask for product in current time step", "📈") {}
+
 private:
-    virtual void init();
+//    A virtual function that is being overridden.
     virtual void run();
 };
 

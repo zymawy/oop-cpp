@@ -11,12 +11,14 @@
 #include <stdio.h>
 #include "BaseCommand.hpp"
 
-class StepCommand: public BaseCommand {
+class StepCommand : public BaseCommand {
 public:
-    StepCommand(): BaseCommand(8, "step", "move to next time step", "⏭️") {}
-    
+//    This is the constructor for the class. It is calling the constructor for the base class.
+    StepCommand() : BaseCommand(8, "step", "move to next time step", "⏭️") {}
+
 private:
-    virtual void init();
+//    This is a virtual function. It is a function that is declared in a base class and is then redefined by a derived class.
     virtual void run();
 };
+
 #endif /* StepCommand_hpp */

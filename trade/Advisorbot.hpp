@@ -19,29 +19,34 @@
 
 class Advisorbot {
 public:
+//    It's the constructor.
     Advisorbot();
+
+//    It's the constructor.
     void init();
-    
+
 private:
-    void printMenu();
-    void printHelp();
-    void printMarketStats();
+//    It's a function that allows the user to enter an ask.
     void enterAsk();
+
+//    It's a function that allows the user to enter a bid.
     void enterBid();
-    void printWallet();
+
+//    It's going to the next time frame.
     void goToNextTimeFrame();
-    int getUserOption();
-    void processUserOption(std::string option);
+
+//    It's the current time.
     std::string currentTime;
-//    OrderBook orderBook{"test.csv"};
     OrderBook orderBook{"data/mid_trem_20200601.csv"};
-    // let's create or command create to
-    // init the commands ...
+//    It's creating a new instance of the CommandCreator class.
     CommandCreator commandCreator{};
-    UserInputProcessor inputProcesser{};
-    
+//    It's creating a new instance of the UserInputProcessor class.
+    UserInputProcessor inputProcessor{};
+
+//    It's creating a new instance of the Wallet class.
     Wallet wallet;
-    
-    std::vector<OrderBookEntry> orders;
+
+    std::vector <OrderBookEntry> orders;
 };
+
 #endif /* MerkelMain_hpp */

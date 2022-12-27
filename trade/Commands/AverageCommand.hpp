@@ -12,12 +12,15 @@
 #include <stdio.h>
 #include "BaseCommand.hpp"
 
-class AverageCommand: public BaseCommand {
+class AverageCommand : public BaseCommand {
 public:
-    AverageCommand(): BaseCommand(5, "avg", "predict max or min ask or bid for the sent product for the next time step", "🗺️") {}
-    
+//    This is the constructor for the AverageCommand class. It is calling the constructor for the BaseCommand class.
+    AverageCommand() : BaseCommand(5, "avg",
+                                   "predict max or min ask or bid for the sent product for the next time step",
+                                   "🗺️") {}
+
 private:
-    virtual void init();
+//    A virtual function that is being overridden.
     virtual void run();
 };
 

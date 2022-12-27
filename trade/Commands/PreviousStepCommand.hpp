@@ -12,12 +12,13 @@
 #include "BaseCommand.hpp"
 
 
-class PreviousStepCommand: public BaseCommand {
+class PreviousStepCommand : public BaseCommand {
 public:
-    PreviousStepCommand(): BaseCommand(10, "pre-step", "move to previous time step", "⏭️") {}
-    
+//    This is the constructor for the PreviousStepCommand class. It is calling the constructor for the BaseCommand class.
+    PreviousStepCommand() : BaseCommand(10, "pre-step", "move to previous time step", "⏭️") {}
+
 private:
-    virtual void init();
+//    A virtual function that is being overridden.
     virtual void run();
 };
 

@@ -6,21 +6,17 @@
 //
 
 #include "BaseCommand.hpp"
-void BaseCommand::run() {
-}
 
-void BaseCommand::init() {
-}
+void BaseCommand::run() {}
 
-
-void BaseCommand::setOrderBook(OrderBook& mOrderBook) {
+void BaseCommand::setOrderBook(OrderBook &mOrderBook) {
     orderBook = mOrderBook;
-};
+}
 
 
 void BaseCommand::setCurrentTime(std::string time) {
     currentTime = time;
-};
+}
 
 
 void BaseCommand::setCommandName(std::string name) {
