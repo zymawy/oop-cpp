@@ -11,7 +11,6 @@
 void MaximumCommand::run() {
     auto argments = UserInputProcessor::explode(commandName, ' ');
     
-    
     if (argments.size() < 3) {
         throw std::runtime_error(std::string("arguments missing product ex..[BTC/ETH], type ex..[ask,bid]"));
     }
@@ -28,15 +27,15 @@ void MaximumCommand::run() {
     
     
     if (! orderBook.isProductExists(product)) {
-        
+
         throw std::runtime_error(std::string("not supported product, please type `prod` for knowen product"));
     }
+
+    std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookEntry::convertType(type), product,currentTime);
     
-    
-    double minPrice = orderBook.getLowPriceFor(product,type,currentTime);
-    
-    
-    UserInputProcessor::print("The max ask for "+ product + " is " + std::to_string(minPrice));
+    double maxPrice = orderBook.getHighPrice(entries,product,OrderBookEntry::convertType(type));
+
+    UserInputProcessor::info("The max ask for "+ product + " is " + std::to_string(maxPrice), icon);
     
 }
 

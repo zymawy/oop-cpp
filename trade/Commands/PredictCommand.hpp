@@ -13,7 +13,9 @@
 
 class PredictCommand: public BaseCommand {
 public:
-    PredictCommand(): BaseCommand(6, "predict", "predict max or min ask or bid for the sent product for the next time step") {}
+    PredictCommand(): BaseCommand(6, "predict", "predict max or min ask or bid for the sent product for the next time step", "🪄") {};
+    std::map<OrderBookType, std::map<std::string, double>> getherTranctions();
+    double calculateSmoothAverage(const OrderBookType &type, const std::string &product, const int &timeframes, const std::string time);
 private:
     virtual void init();
     virtual void run();

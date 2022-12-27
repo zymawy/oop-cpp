@@ -10,66 +10,65 @@
 #include <map>
 #include "OrderBookEntry.hpp"
 #include "UserInputProcessor.hpp"
+#include <string>
 
 OrderBook::OrderBook() {
     
 }
 
-OrderBook::OrderBook(std::string filename) {
-    orders = Reader::read(filename);
-}
 
-std::vector<std::string> OrderBook::getKnownProducts() {
-    std::vector<std::string> prodcuts;
-    std::map<std::string, bool> mappedProducts;
-    for(OrderBookEntry& order : orders) {
-        mappedProducts[order.product] = true;
-    }
+OrderBook::OrderBook(const std::string& filename)
+{
+    UserInputProcessor::print("Loading data set toght...");
+    Reader reader{};
     
-    for(auto const& e : mappedProducts) {
-        prodcuts.push_back(e.first);
-    }
-    
-    return prodcuts;
-    
+    orders = reader.read(filename);
+    products = getKnownProducts();
 }
 
 
 
-std::string OrderBook::getAllKnownProducts() {
-  
-    std::string lists;
-    std::vector<std::string> knownProducts = getKnownProducts();
-    
-    for (auto const& product : knownProducts) {
-        // let's check, and avoid adding comma in first or last command name...
-        std::string withComma = ", ";
-        lists = lists.append(withComma + product);
-     }
-    
-    return lists;
-};
-
-
-std::vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type, std::string product, std::string timestamp) {
-    std::vector<OrderBookEntry> foundOrders;
-    
-    for (OrderBookEntry& order : orders) {
-        if (order.orderType == type && order.product == product && order.timestamp == timestamp) {
-            foundOrders.push_back(order);
+std::unordered_set<std::string> OrderBook::getKnownProducts()
+{
+    std::unordered_set<std::string> products;
+    for (auto const& [timestamp, orderVec] : orders)
+    {
+        for (OrderBookEntry order : orderVec)
+        {
+            products.insert(order.product);
         }
     }
-    
-    return foundOrders;
-};
+    return products;
+}
 
-double OrderBook::getLowPrice(std::vector<OrderBookEntry>& orders)
+
+std::vector<OrderBookEntry> OrderBook::getOrders(const OrderBookType& type,
+                                                 const std::string& product,
+                                                 const std::string& timestamp)
 {
+    std::vector<OrderBookEntry> matchedOrders{};
+    if (orders.find(timestamp) != orders.end())
+    {
+        for (const OrderBookEntry& order : orders.at(timestamp))
+        {
+            if (order.orderType == type &&
+                order.product == product)
+            {
+                matchedOrders.push_back(order);
+            }
+        }
+    }
+    return matchedOrders;
+}
 
-    double min = orders[0].price;
 
-    for (OrderBookEntry& order : orders) {
-        if (order.price < min) {
+double OrderBook::getLowPrice(const std::vector<OrderBookEntry>& orders, const std::string& product, const OrderBookType& type)
+{
+    double min{orders[0].price};
+    for (const OrderBookEntry& order : orders)
+    {
+        if (order.price < min && order.product == product && order.orderType == type)
+        {
             min = order.price;
         }
     }
@@ -77,13 +76,14 @@ double OrderBook::getLowPrice(std::vector<OrderBookEntry>& orders)
 }
 
 
-double OrderBook::getHighPrice(std::vector<OrderBookEntry>& orders)
+double OrderBook::getHighPrice(const std::vector<OrderBookEntry>& orders, const std::string& product, const OrderBookType& type)
 {
-    
-    double max = orders[0].price;
-    
-    for (OrderBookEntry& order : orders) {
-        if (order.price > max) {
+    double max{orders[0].price};
+
+    for (const OrderBookEntry& order : orders)
+    {
+        if (order.price > max && order.product == product && order.orderType == type)
+        {
             max = order.price;
         }
     }
@@ -91,40 +91,39 @@ double OrderBook::getHighPrice(std::vector<OrderBookEntry>& orders)
 }
 
 
+
 std::string OrderBook::getEarliestTime()
 {
-    return orders[0].timestamp;
+    return orders.begin()->first;
 }
 
 
 
-std::string OrderBook::getNextTime(std::string timestamp) {
-    
-    std::string nextTimestamp = "";
-    for(OrderBookEntry& order : orders) {
-        if (order.timestamp > timestamp) {
-            nextTimestamp = order.timestamp;
-        }
+std::string OrderBook::getNextTime(const std::string& timestamp)
+{
+    if (orders.find(timestamp) != orders.end())
+    {
+        return std::next(orders.find(timestamp), 1)->first;
     }
-    
-    if (nextTimestamp == "") {
-        nextTimestamp = orders[0].timestamp;
+    else
+    {
+        return orders.begin()->first;
     }
-    
-    
-    return nextTimestamp;
-};
-
-
-void OrderBook::insrtOrder(OrderBookEntry& order) {
-    
-    orders.push_back(order);
-    
-    std::sort(orders.begin(), orders.end(), OrderBookEntry::compareByTimestamp);
 }
 
 
-std::vector<OrderBookEntry> OrderBook::matchAsksToBids(std::string product, std::string timestamp) {
+
+
+void OrderBook::insertOrder(const OrderBookEntry& order)
+{
+    orders.at(order.timestamp)
+        .push_back(order);
+}
+
+
+
+
+std::vector<OrderBookEntry> OrderBook::matchAsksToBids(const std::string& product, const std::string& timestamp) {
     
     // ask
     std::vector<OrderBookEntry> asks = getOrders(OrderBookType::ask, product, timestamp);
@@ -196,29 +195,26 @@ std::vector<OrderBookEntry> OrderBook::matchAsksToBids(std::string product, std:
 
 bool OrderBook::isProductExists(std::string product) {
     
-    std::vector<std::string> knownProducts = getKnownProducts();
     bool productExists = false;
-    
-    for(auto const& kProduct : knownProducts) {
+
+    for(auto const& kProduct : products) {
         if (kProduct == product) {
             productExists = true;
         };
     }
-    
+
     return productExists;
-    
+
 }
 
-double OrderBook::getLowPriceFor(std::string product, std::string type, std::string timestamp) {
-    
-    std::vector<OrderBookEntry> foundOrders = getOrders(OrderBookEntry::convertType(type), product, timestamp);
-
-    return OrderBook::getLowPrice(foundOrders);
-}
-
-double OrderBook::getHighPriceFor(std::string product, std::string type, std::string timestamp) {
-    
-    std::vector<OrderBookEntry> foundOrders = getOrders(OrderBookEntry::convertType(type), product, timestamp);
-
-    return OrderBook::getHighPrice(foundOrders);
+std::string OrderBook::getPreviousTime(const std::string& timestamp)
+{
+    if (orders.find(timestamp) != orders.begin())
+    {
+        return std::prev(orders.find(timestamp), 1)->first;
+    }
+    else
+    {
+        return orders.begin()->first;
+    }
 }

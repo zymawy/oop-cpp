@@ -10,10 +10,8 @@
 #include "vector"
 
 void ProductCommand::run() {
-    std::vector<std::string> argments = UserInputProcessor::explode(orderBook.getAllKnownProducts().erase(0, 2), ',');
-    
-    for (auto & argment: argments) {
-        UserInputProcessor::print(argment);
+    for (auto & productName: orderBook.products) {
+        UserInputProcessor::info(productName);
     }
 }
 

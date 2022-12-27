@@ -11,23 +11,28 @@
 #include <stdio.h>
 #include <istream>
 #include <vector>
+#include <map>
 #include "OrderBookEntry.hpp"
+#include <fstream>
+
 class Reader {
 public:
     Reader();
-    
-    static std::vector<OrderBookEntry> read(std::string file);
-    static std::vector<std::string> tokenise(std::string line, char separator);
-    static OrderBookEntry stringTpOrderBookEntry(
-                                                 std::string price,
-                                                 std::string amount,
-                                                 std::string timestamp,
-                                                 std::string product,
-                                                 OrderBookType orderBookType
-                                                 );
+//    static std::map<std::string, std::vector<OrderBookEntry>> read(std::string file);
+    std::map<std::string, std::vector<OrderBookEntry>> read(std::string file);
+    // A member variable of the class Reader. It is a file streamer.
+    std::ifstream streamer;
+    /**  A static function that takes a string and a character as input and returns a vector of strings. */
+    static std::vector<std::string> tokenise(std::string csvLine, char separator);
 
 private:
-    static OrderBookEntry stringTpOrderBookEntry(std::vector<std::string> strings);
+    /** A static function that takes a vector of strings as input and returns an OrderBookEntry. */
+    static OrderBookEntry stringsToOrderBookEntry(std::vector<std::string> strings);
+    static OrderBookEntry stringsToOrderBookEntry(std::string price,
+                                       std::string amount,
+                                       std::string timestamp,
+                                       std::string product,
+                                       OrderBookType OrderBookType);
 };
 
 #endif /* Reader_hpp */

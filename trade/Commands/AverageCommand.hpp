@@ -14,7 +14,7 @@
 
 class AverageCommand: public BaseCommand {
 public:
-    AverageCommand(): BaseCommand(5, "avg", "The average ETH/BTC ask price over the last 10 timesteps was 1.0") {}
+    AverageCommand(): BaseCommand(5, "avg", "predict max or min ask or bid for the sent product for the next time step", "🗺️") {}
     
 private:
     virtual void init();

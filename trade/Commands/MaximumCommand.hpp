@@ -13,7 +13,7 @@
 
 class MaximumCommand: public BaseCommand {
 public:
-    MaximumCommand(): BaseCommand(4, "max", " find maximum bid or ask for product in current time step") {}
+    MaximumCommand(): BaseCommand(4, "max", " find maximum bid or ask for product in current time step", "📈") {}
     
 private:
     virtual void init();

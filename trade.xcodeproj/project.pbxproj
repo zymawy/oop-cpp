@@ -7,11 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		452AB3E1294CC409000F78E4 /* UserInputProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 452AB3DF294CC409000F78E4 /* UserInputProcessor.cpp */; };
+		45303F052939642800991EE7 /* BaseCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F032939642800991EE7 /* BaseCommand.cpp */; };
+		45303F082939644500991EE7 /* HelpCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F062939644500991EE7 /* HelpCommand.cpp */; };
+		45303F0B2939662800991EE7 /* CommandCreator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F092939662800991EE7 /* CommandCreator.cpp */; };
+		45303F0E29398ACA00991EE7 /* ProductCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F0C29398ACA00991EE7 /* ProductCommand.cpp */; };
+		45303F1129398BBD00991EE7 /* MinimumCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F0F29398BBD00991EE7 /* MinimumCommand.cpp */; };
+		45303F1429398E1C00991EE7 /* MaximumCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F1229398E1C00991EE7 /* MaximumCommand.cpp */; };
+		45303F1729398EDA00991EE7 /* AverageCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F1529398EDA00991EE7 /* AverageCommand.cpp */; };
+		45303F1A29398F4300991EE7 /* PredictCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F1829398F4300991EE7 /* PredictCommand.cpp */; };
+		45303F1D29398FCF00991EE7 /* TimeCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F1B29398FCF00991EE7 /* TimeCommand.cpp */; };
+		45303F202939902B00991EE7 /* StepCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45303F1E2939902B00991EE7 /* StepCommand.cpp */; };
 		45C1307428F8CD0A0093C7E8 /* Reader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1307228F8CD0A0093C7E8 /* Reader.cpp */; };
 		45C1307728F97A900093C7E8 /* OrderBook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45C1307528F97A900093C7E8 /* OrderBook.cpp */; };
 		45DBAD8A28F4C68A0088ADB7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD8928F4C68A0088ADB7 /* main.cpp */; };
 		45DBAD9328F74B890088ADB7 /* OrderBookEntry.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD9128F74B890088ADB7 /* OrderBookEntry.cpp */; };
-		45DBAD9928F751050088ADB7 /* MerkelMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD9728F751050088ADB7 /* MerkelMain.cpp */; };
+		45DBAD9928F751050088ADB7 /* Advisorbot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45DBAD9728F751050088ADB7 /* Advisorbot.cpp */; };
+		45E3855A29552BFD0085D330 /* SummaryCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E3855829552BFD0085D330 /* SummaryCommand.cpp */; };
+		45E63320295A3499004671BB /* PreviousStepCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45E6331E295A3499004671BB /* PreviousStepCommand.cpp */; };
 		45F95D8628FA3AFC0083C448 /* Wallet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45F95D8428FA3AFC0083C448 /* Wallet.cpp */; };
 /* End PBXBuildFile section */
 
@@ -28,8 +41,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		452AB3DF294CC409000F78E4 /* UserInputProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = UserInputProcessor.cpp; path = Processors/UserInputProcessor.cpp; sourceTree = "<group>"; };
+		452AB3E0294CC409000F78E4 /* UserInputProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = UserInputProcessor.hpp; path = Processors/UserInputProcessor.hpp; sourceTree = "<group>"; };
+		45303F032939642800991EE7 /* BaseCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BaseCommand.cpp; sourceTree = "<group>"; };
+		45303F042939642800991EE7 /* BaseCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = BaseCommand.hpp; sourceTree = "<group>"; };
+		45303F062939644500991EE7 /* HelpCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HelpCommand.cpp; sourceTree = "<group>"; };
+		45303F072939644500991EE7 /* HelpCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HelpCommand.hpp; sourceTree = "<group>"; };
+		45303F092939662800991EE7 /* CommandCreator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CommandCreator.cpp; sourceTree = "<group>"; };
+		45303F0A2939662800991EE7 /* CommandCreator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CommandCreator.hpp; sourceTree = "<group>"; };
+		45303F0C29398ACA00991EE7 /* ProductCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ProductCommand.cpp; sourceTree = "<group>"; };
+		45303F0D29398ACA00991EE7 /* ProductCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ProductCommand.hpp; sourceTree = "<group>"; };
+		45303F0F29398BBD00991EE7 /* MinimumCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MinimumCommand.cpp; sourceTree = "<group>"; };
+		45303F1029398BBD00991EE7 /* MinimumCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MinimumCommand.hpp; sourceTree = "<group>"; };
+		45303F1229398E1C00991EE7 /* MaximumCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MaximumCommand.cpp; sourceTree = "<group>"; };
+		45303F1329398E1C00991EE7 /* MaximumCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MaximumCommand.hpp; sourceTree = "<group>"; };
+		45303F1529398EDA00991EE7 /* AverageCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AverageCommand.cpp; sourceTree = "<group>"; };
+		45303F1629398EDA00991EE7 /* AverageCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AverageCommand.hpp; sourceTree = "<group>"; };
+		45303F1829398F4300991EE7 /* PredictCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PredictCommand.cpp; sourceTree = "<group>"; };
+		45303F1929398F4300991EE7 /* PredictCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PredictCommand.hpp; sourceTree = "<group>"; };
+		45303F1B29398FCF00991EE7 /* TimeCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeCommand.cpp; sourceTree = "<group>"; };
+		45303F1C29398FCF00991EE7 /* TimeCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeCommand.hpp; sourceTree = "<group>"; };
+		45303F1E2939902B00991EE7 /* StepCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = StepCommand.cpp; sourceTree = "<group>"; };
+		45303F1F2939902B00991EE7 /* StepCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = StepCommand.hpp; sourceTree = "<group>"; };
 		45C1306C28F8817B0093C7E8 /* 20200317.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = 20200317.csv; path = "../../../../../../../Documents/csv-oop/20200317.csv"; sourceTree = "<group>"; };
-		45C1306E28F883B00093C7E8 /* test.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = test.csv; sourceTree = "<group>"; };
 		45C1307228F8CD0A0093C7E8 /* Reader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Reader.cpp; sourceTree = "<group>"; };
 		45C1307328F8CD0A0093C7E8 /* Reader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Reader.hpp; sourceTree = "<group>"; };
 		45C1307528F97A900093C7E8 /* OrderBook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrderBook.cpp; sourceTree = "<group>"; };
@@ -38,8 +72,12 @@
 		45DBAD8928F4C68A0088ADB7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		45DBAD9128F74B890088ADB7 /* OrderBookEntry.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OrderBookEntry.cpp; sourceTree = "<group>"; };
 		45DBAD9228F74B890088ADB7 /* OrderBookEntry.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OrderBookEntry.hpp; sourceTree = "<group>"; };
-		45DBAD9728F751050088ADB7 /* MerkelMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MerkelMain.cpp; sourceTree = "<group>"; };
-		45DBAD9828F751050088ADB7 /* MerkelMain.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MerkelMain.hpp; sourceTree = "<group>"; };
+		45DBAD9728F751050088ADB7 /* Advisorbot.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Advisorbot.cpp; sourceTree = "<group>"; };
+		45DBAD9828F751050088ADB7 /* Advisorbot.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Advisorbot.hpp; sourceTree = "<group>"; };
+		45E3855829552BFD0085D330 /* SummaryCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SummaryCommand.cpp; sourceTree = "<group>"; };
+		45E3855929552BFD0085D330 /* SummaryCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SummaryCommand.hpp; sourceTree = "<group>"; };
+		45E6331E295A3499004671BB /* PreviousStepCommand.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PreviousStepCommand.cpp; sourceTree = "<group>"; };
+		45E6331F295A3499004671BB /* PreviousStepCommand.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PreviousStepCommand.hpp; sourceTree = "<group>"; };
 		45F95D8428FA3AFC0083C448 /* Wallet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Wallet.cpp; sourceTree = "<group>"; };
 		45F95D8528FA3AFC0083C448 /* Wallet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Wallet.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -55,6 +93,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45303EFF293963B300991EE7 /* Commands */ = {
+			isa = PBXGroup;
+			children = (
+				45303F032939642800991EE7 /* BaseCommand.cpp */,
+				45303F042939642800991EE7 /* BaseCommand.hpp */,
+				45303F062939644500991EE7 /* HelpCommand.cpp */,
+				45303F072939644500991EE7 /* HelpCommand.hpp */,
+				45303F092939662800991EE7 /* CommandCreator.cpp */,
+				45303F0A2939662800991EE7 /* CommandCreator.hpp */,
+				45303F0C29398ACA00991EE7 /* ProductCommand.cpp */,
+				45303F0D29398ACA00991EE7 /* ProductCommand.hpp */,
+				45303F0F29398BBD00991EE7 /* MinimumCommand.cpp */,
+				45303F1029398BBD00991EE7 /* MinimumCommand.hpp */,
+				45303F1229398E1C00991EE7 /* MaximumCommand.cpp */,
+				45303F1329398E1C00991EE7 /* MaximumCommand.hpp */,
+				45303F1529398EDA00991EE7 /* AverageCommand.cpp */,
+				45303F1629398EDA00991EE7 /* AverageCommand.hpp */,
+				45303F1829398F4300991EE7 /* PredictCommand.cpp */,
+				45303F1929398F4300991EE7 /* PredictCommand.hpp */,
+				45303F1B29398FCF00991EE7 /* TimeCommand.cpp */,
+				45303F1C29398FCF00991EE7 /* TimeCommand.hpp */,
+				45303F1E2939902B00991EE7 /* StepCommand.cpp */,
+				45303F1F2939902B00991EE7 /* StepCommand.hpp */,
+				45E3855829552BFD0085D330 /* SummaryCommand.cpp */,
+				45E3855929552BFD0085D330 /* SummaryCommand.hpp */,
+				45E6331E295A3499004671BB /* PreviousStepCommand.cpp */,
+				45E6331F295A3499004671BB /* PreviousStepCommand.hpp */,
+			);
+			path = Commands;
+			sourceTree = "<group>";
+		};
 		45DBAD7D28F4C68A0088ADB7 = {
 			isa = PBXGroup;
 			children = (
@@ -74,19 +143,21 @@
 		45DBAD8828F4C68A0088ADB7 /* trade */ = {
 			isa = PBXGroup;
 			children = (
+				45303EFF293963B300991EE7 /* Commands */,
 				45C1307528F97A900093C7E8 /* OrderBook.cpp */,
 				45F95D8428FA3AFC0083C448 /* Wallet.cpp */,
 				45F95D8528FA3AFC0083C448 /* Wallet.hpp */,
 				45C1307628F97A900093C7E8 /* OrderBook.hpp */,
-				45DBAD9728F751050088ADB7 /* MerkelMain.cpp */,
-				45DBAD9828F751050088ADB7 /* MerkelMain.hpp */,
+				45DBAD9728F751050088ADB7 /* Advisorbot.cpp */,
+				45DBAD9828F751050088ADB7 /* Advisorbot.hpp */,
 				45DBAD8928F4C68A0088ADB7 /* main.cpp */,
 				45DBAD9128F74B890088ADB7 /* OrderBookEntry.cpp */,
 				45DBAD9228F74B890088ADB7 /* OrderBookEntry.hpp */,
 				45C1306C28F8817B0093C7E8 /* 20200317.csv */,
-				45C1306E28F883B00093C7E8 /* test.csv */,
 				45C1307228F8CD0A0093C7E8 /* Reader.cpp */,
 				45C1307328F8CD0A0093C7E8 /* Reader.hpp */,
+				452AB3DF294CC409000F78E4 /* UserInputProcessor.cpp */,
+				452AB3E0294CC409000F78E4 /* UserInputProcessor.hpp */,
 			);
 			path = trade;
 			sourceTree = "<group>";
@@ -148,12 +219,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45DBAD9928F751050088ADB7 /* MerkelMain.cpp in Sources */,
+				45303F082939644500991EE7 /* HelpCommand.cpp in Sources */,
+				45303F0E29398ACA00991EE7 /* ProductCommand.cpp in Sources */,
+				45303F1129398BBD00991EE7 /* MinimumCommand.cpp in Sources */,
+				45303F1A29398F4300991EE7 /* PredictCommand.cpp in Sources */,
+				45303F0B2939662800991EE7 /* CommandCreator.cpp in Sources */,
+				45DBAD9928F751050088ADB7 /* Advisorbot.cpp in Sources */,
 				45DBAD9328F74B890088ADB7 /* OrderBookEntry.cpp in Sources */,
+				45303F052939642800991EE7 /* BaseCommand.cpp in Sources */,
 				45F95D8628FA3AFC0083C448 /* Wallet.cpp in Sources */,
+				45303F1429398E1C00991EE7 /* MaximumCommand.cpp in Sources */,
+				45E63320295A3499004671BB /* PreviousStepCommand.cpp in Sources */,
 				45C1307428F8CD0A0093C7E8 /* Reader.cpp in Sources */,
+				45303F202939902B00991EE7 /* StepCommand.cpp in Sources */,
 				45DBAD8A28F4C68A0088ADB7 /* main.cpp in Sources */,
+				452AB3E1294CC409000F78E4 /* UserInputProcessor.cpp in Sources */,
+				45E3855A29552BFD0085D330 /* SummaryCommand.cpp in Sources */,
+				45303F1D29398FCF00991EE7 /* TimeCommand.cpp in Sources */,
 				45C1307728F97A900093C7E8 /* OrderBook.cpp in Sources */,
+				45303F1729398EDA00991EE7 /* AverageCommand.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

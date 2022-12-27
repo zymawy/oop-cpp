@@ -11,32 +11,40 @@
 #include "Reader.hpp"
 #include <stdio.h>
 #include <vector>
+#include <map>
+#include <string>
+#include <unordered_set>
 
 class OrderBook {
     
 public:
-OrderBook();
-/** construct, reading a csv data file */
-OrderBook(std::string filename);
-    void insrtOrder(OrderBookEntry& order);
-    std::vector<OrderBookEntry> matchAsksToBids(std::string product, std::string timestamp);
-/** return vector of all know products in the dataset*/
-std::vector<std::string> getKnownProducts();
-std::string getAllKnownProducts();
-bool isProductExists(std::string product);
-/** return vector of Orders according to the sent filters*/
-std::vector<OrderBookEntry> getOrders(OrderBookType type,
-std::string product,
-std::string timestamp);
-/** return the price of the highest bid in the sent set */
-static double getHighPrice(std::vector<OrderBookEntry>& orders);
-/** return the price of the lowest bid in the sent set */
-static double getLowPrice(std::vector<OrderBookEntry>& orders);
-double getLowPriceFor(std::string product, std::string type, std::string = "2020/03/17 17:01:24.884492");
-double getHighPriceFor(std::string product, std::string type, std::string = "2020/03/17 17:01:24.884492");
-std::string getEarliestTime();
-std::string getNextTime(std::string timestamp);
-private:
-std::vector<OrderBookEntry> orders;
+    /** Constructor */
+    OrderBook();
+    OrderBook(const std::string& filename);
+
+    /** Retrieve a subset of orders based on specified filter criteria */
+    std::vector<OrderBookEntry> getOrders(const OrderBookType& type,
+                                          const std::string& product,
+                                          const std::string& timestamp);
+    /** Get the highest price in a given set of orders */
+    static double getHighPrice(const std::vector<OrderBookEntry>& orders, const std::string& product, const OrderBookType& type);
+    /** Get the lowest price in a given set of orders */
+    static double getLowPrice(const std::vector<OrderBookEntry>& orders, const std::string& product, const OrderBookType& type);
+    /** Insert an order into the order book */
+    void insertOrder(const OrderBookEntry& order);
+    /** Run the matching engine to match asks to bids and create sales  */
+    std::vector<OrderBookEntry> matchAsksToBids(const std::string& product, const std::string& timestamp);
+    /** Contains the actual order book as a map */
+    std::map<std::string, std::vector<OrderBookEntry>> orders;
+    /** Contains the products identified in the order book */
+    std::unordered_set<std::string> products;
+    /** Get the next timeframe in the order book */
+    std::string getNextTime(const std::string& timestamp);
+    /** Get the previous timeframe in the order book */
+    std::string getPreviousTime(const std::string& timestamp);
+    std::string getEarliestTime();
+    /** Get a list of products seen in the order book */
+    std::unordered_set<std::string> getKnownProducts();
+    bool isProductExists(std::string product);
 };
 #endif /* OrderBook_hpp */

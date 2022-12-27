@@ -10,7 +10,7 @@
 
 void StepCommand::run() {
     
-    UserInputProcessor::print("now at " + currentTime);
+    UserInputProcessor::info("now at " + currentTime, icon);
 }
 
 void StepCommand::init() {

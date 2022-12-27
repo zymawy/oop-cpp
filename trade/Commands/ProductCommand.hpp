@@ -15,7 +15,7 @@
 
 class ProductCommand: public BaseCommand {
 public:
-    ProductCommand() : BaseCommand(2, "prod", "list available products") {}
+    ProductCommand() : BaseCommand(2, "prod", "list available products", "👨🏾‍💻") {}
     
 private:
     virtual void init();

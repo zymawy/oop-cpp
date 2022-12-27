@@ -13,7 +13,7 @@
 
 class StepCommand: public BaseCommand {
 public:
-    StepCommand(): BaseCommand(8, "step", "move to next time step") {}
+    StepCommand(): BaseCommand(8, "step", "move to next time step", "⏭️") {}
     
 private:
     virtual void init();

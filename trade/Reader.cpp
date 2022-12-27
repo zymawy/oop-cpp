@@ -9,33 +9,33 @@
 #include <iostream>
 #include <fstream>
 #include "OrderBookEntry.hpp"
-
+#include "UserInputProcessor.hpp"
 Reader::Reader () {
     
 };
 
-std::vector<OrderBookEntry> Reader::read(std::string file) {
-
-    std::vector<OrderBookEntry> enteries;
+std::map<std::string, std::vector<OrderBookEntry>> Reader::read(std::string file)
+{
+    std::map<std::string, std::vector<OrderBookEntry>> entries;
+//    std::ifstream initStreamer{file};
     
-        std::ifstream streamer{file};
+    streamer.open(file);
+    
+    if (streamer.is_open())
+    {
         std::string line;
-        std::vector<std::string> tokens;
-    
-    if (streamer.is_open()) {
-        while (std::getline(streamer, line)) {
-            try {
-                OrderBookEntry order = stringTpOrderBookEntry(tokenise(line, ','));
-                enteries.push_back(order);
-            } catch (const std::exception& e) {
-                std::cout << "Reader[read]  bad data '" <<  line << "'"  << std::endl;
-            }
+        while (std::getline(streamer, line))
+        {
+            OrderBookEntry obe{stringsToOrderBookEntry(tokenise(line, ','))};
+            entries[obe.timestamp].push_back(obe);
         }
     }
-    
-    std::cout << "Reader::read " << enteries.size() << " enteries" << std::endl;
-    
-    return enteries;
+    else
+    {
+        UserInputProcessor::debug("Problem opening file " + file);
+    }
+
+    return entries;
 }
 
 
@@ -63,50 +63,59 @@ std::vector<std::string> Reader::tokenise(std::string line, char separator) {
     return tokens;
 }
 
-
-OrderBookEntry Reader::stringTpOrderBookEntry(std::vector<std::string> token) {
-    
+OrderBookEntry Reader::stringsToOrderBookEntry(std::vector<std::string> tokens)
+{
     double price, amount;
-    
-    if (token.size() != 5) {
-
+    if (tokens.size() != 5)
+    {
+        UserInputProcessor::exception("CSVReader::stringsToOrderBookEntry Bad line! ");
         throw std::exception{};
     }
 
-    try {
-    price = std::stod(token[3]);
-    amount = std::stod(token[4]);
-    } catch (std::exception& e) {
-    std::cout << "Bad float" << std::endl;
-    throw;
+    try
+    {
+        price = std::stod(tokens[3]);
+        amount = std::stod(tokens[4]);
     }
+    catch (const std::exception& e)
+    {
         
-    
-    OrderBookEntry order{price, amount, token[0], token[1], OrderBookEntry::convertType(token[2])};
-    
-    return order;
+    UserInputProcessor::exception("CSVReader::stringsToOrderBookEntry Bad line! " +  tokens[3] + " : " + tokens[4]);
+        throw;
+    }
+
+    OrderBookEntry obe{
+        price,
+        amount,
+        tokens[0],
+        tokens[1],
+        OrderBookEntry::convertType(tokens[2])};
+
+    return obe;
 }
 
-OrderBookEntry Reader::stringTpOrderBookEntry(
-                                             std::string _price,
-                                             std::string _amount,
-                                             std::string timestamp,
-                                             std::string product,
-                                             OrderBookType orderBookType
-                                             ) {
-    
-    
+OrderBookEntry Reader::stringsToOrderBookEntry(std::string _price,
+                                       std::string _amount,
+                                       std::string timestamp,
+                                       std::string product,
+                                       OrderBookType orderType)
+{
     double price, amount;
-
-    try {
-    price = std::stod(_price);
-    amount = std::stod(_amount);
-    } catch (std::exception& e) {
-    std::cout << "Bad float" << std::endl;
-    throw;
+    try
+    {
+        price = std::stod(_price);
+        amount = std::stod(_amount);
     }
-    
-    OrderBookEntry order{price, amount, timestamp, product, orderBookType};
-    
-    return order;
+    catch (const std::exception& e)
+    {
+        UserInputProcessor::exception("CSVReader::stringsToOrderBookEntry Bad float! " + _price + " : " + _amount);
+        throw;
+    }
+
+    OrderBookEntry obe{price,
+                       amount,
+                       timestamp,
+                       product,
+                       orderType};
+    return obe;
 }

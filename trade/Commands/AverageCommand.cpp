@@ -7,12 +7,11 @@
 
 #include "AverageCommand.hpp"
 #include "UserInputProcessor.hpp"
+#include <numeric>
 
 void AverageCommand::run() {
     
-    UserInputProcessor::print("Basm allahma");
     auto argments = UserInputProcessor::explode(commandName, ' ');
-    
     
     if (argments.size() < 4) {
         throw std::runtime_error(
@@ -37,17 +36,29 @@ throw std::runtime_error(
         throw std::runtime_error(std::string("not supported product, please type `prod` for knowen product"));
     }
     
+    std::string previousTime = orderBook.getPreviousTime(currentTime);
+
+             std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookEntry::convertType(type),
+                                                                        product, previousTime);
     
-    double minPrice = orderBook.getLowPriceFor(product,type);
+    double average = 0, totalBase = 0, totalProduct = 0;
+
+    for (auto &e : entries)
+    {
+        totalBase += e.price * e.amount;
+        totalProduct += e.amount;
+    }
+
+    average = totalBase / totalProduct;
     
-    
-    UserInputProcessor::print(
+    UserInputProcessor::info(
                               "The average "+ product +
                               " " + type +
                               " price over the last "+
                               timestamp +
                               " was " +
-                              std::to_string(minPrice)
+                              std::to_string(average),
+                             icon
                               );
     
 }

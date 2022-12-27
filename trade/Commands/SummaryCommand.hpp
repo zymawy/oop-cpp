@@ -13,9 +13,9 @@
 #include "BaseCommand.hpp"
 
 
-class HighestAndLowestCommand: public BaseCommand {
+class SummaryCommand: public BaseCommand {
 public:
-    HighestAndLowestCommand(): BaseCommand(9, "high", "get the higitest products.. ") {}
+    SummaryCommand(): BaseCommand(9, "summary", "a summary of the higitest/loweset products.. ", "📝") {}
     
 private:
     virtual void init();
