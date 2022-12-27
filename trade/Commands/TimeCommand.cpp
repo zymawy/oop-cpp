@@ -10,7 +10,7 @@
 
 void TimeCommand::run() {
     
-    UserInputProcessor::print(currentTime);
+    UserInputProcessor::info(currentTime, icon);
 }
 
 void TimeCommand::init() {

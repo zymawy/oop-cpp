@@ -17,10 +17,8 @@ void MinimumCommand::run() {
         throw std::runtime_error(std::string("arguments missing product ex..[BTC/ETH], type ex..[ask,bid]"));
     }
     
-    
     std::string product =argments[1];
     std::string type =argments[2];
-    
     
     if ((type != "bid" && type != "ask")) {
 
@@ -32,12 +30,11 @@ void MinimumCommand::run() {
         throw std::runtime_error(std::string("not supported product, please type `prod` for knowen product"));
     }
     
+    std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookEntry::convertType(type), product,currentTime);
     
-    UserInputProcessor::debug("current time is" + currentTime);
-    double minPrice = orderBook.getLowPriceFor(product,type, currentTime);
+    double minPrice = orderBook.getLowPrice(entries,product,OrderBookEntry::convertType(type));
     
-    
-    UserInputProcessor::print("The min ask for "+ product + " is " + std::to_string(minPrice));
+    UserInputProcessor::info("The min ask for "+ product + " is " + std::to_string(minPrice), icon);
 }
 
 void MinimumCommand::init() {

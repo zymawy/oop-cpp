@@ -14,9 +14,9 @@
 
 class HelpCommand: public BaseCommand {
 public:
-    HelpCommand(): BaseCommand(1, "help", "output help for the specified command") {};
+    HelpCommand(): BaseCommand(1, "help", "output help for the specified command", "🙋🏾‍♂️") {};
     std::vector<std::string> commandLists = {
-        "💉 help", "🪡 help <cmd>", "👨🏾‍💻 product", "📉 min", "📈 max", "🗺️ avg", "🪄 predict", "⏳ time", "⏭️ step"};
+        "🙋🏾‍♂️ help", "⁉️ help <cmd>", "👨🏾‍💻 product", "📉 min", "📈 max", "🗺️ avg", "🪄 predict", "⏳ time", "⏭️ step"};
     virtual void init();
     virtual void run();
 private:

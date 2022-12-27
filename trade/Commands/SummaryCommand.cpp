@@ -5,16 +5,16 @@
 //  Created by hamza ironside on 12/23/22.
 //
 
-#include "HighestAndLowestCommand.hpp"
+#include "SummaryCommand.hpp"
 #include "UserInputProcessor.hpp"
 
-void HighestAndLowestCommand::init() {
+void SummaryCommand::init() {
     
   
 }
 
 
-void HighestAndLowestCommand::run() {
+void SummaryCommand::run() {
     std::vector<std::string> products;
     for (std::string const &p : orderBook.getKnownProducts())
     {
@@ -25,8 +25,10 @@ void HighestAndLowestCommand::run() {
             products.push_back(e.product);
         }
     }
+    
     std::sort(products.begin(), products.end());
     
-    UserInputProcessor::print("Highest Product : " + products[0]);
-    UserInputProcessor::print("Lowest Product : " + products.back());
+    
+    UserInputProcessor::info("Highest Product : " + products.front(), icon);
+    UserInputProcessor::info("Lowest Product : " + products.back(), icon);
 }

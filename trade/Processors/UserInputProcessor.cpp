@@ -13,6 +13,11 @@
 #include <sstream>
 #include <utility>
 #include <vector>
+#include <ios>
+#include <iostream>
+#include <iomanip>
+#include <sstream>
+
 
 
 UserInputProcessor::UserInputProcessor() {
@@ -26,14 +31,25 @@ std::string UserInputProcessor::getInput() {
 
 }
 
-void UserInputProcessor::print(std::string test, std::string by) {
+void UserInputProcessor::print(std::string taxt, std::string by) {
     //"\n" <<
-    std::cout << by << test << std::endl;
+    std::cout << by << taxt << std::endl;
 }
 
 
-void UserInputProcessor::debug(std::string test) {
-    print(test, "debug> ");
+void UserInputProcessor::debug(std::string taxt) {
+    print(taxt, "debug🐛> ");
+}
+void UserInputProcessor::info(std::string taxt, std::string icon) {
+//    std::cout.setf(std::ios::right, std::ios::adjustfield);
+//    std::cout.width(50);
+    
+    print(taxt, "advisorbot" + icon + "> ");
+}
+
+
+void UserInputProcessor::exception(std::string taxt) {
+    print(taxt, "exception🚨> ");
 }
 
 std::vector<std::string> UserInputProcessor::explode(std::string const &s, char delim)
@@ -51,4 +67,19 @@ std::vector<std::string> UserInputProcessor::explode(std::string const &s, char 
     }
 
     return result;
+}
+
+
+std::string UserInputProcessor::repeat(int n, std::string repeat) {
+    
+    std::ostringstream os;
+    for(int i = 0; i < n; i++)
+        os << repeat;
+    
+    
+    return os.str();
+}
+
+bool UserInputProcessor::is_number(const std::string &s) {
+  return !s.empty() && std::all_of(s.begin(), s.end(), ::isdigit);
 }
